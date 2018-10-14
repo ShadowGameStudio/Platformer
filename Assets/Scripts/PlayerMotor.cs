@@ -42,8 +42,24 @@ public class PlayerMotor : MonoBehaviour {
         Vector2 _movHorizontal = transform.right * _xMov;
         Vector2 _movVerical = transform.up * _zMov;
 
-        //Final movement vector
-        Vector2 _velocity = (_movHorizontal + _movVerical).normalized * Acceleration;
+        //Check if the vertical movement isn't equal to zero
+        if (_movVerical != Vector2.zero) {
+
+            canJump = false;
+        }
+
+        Vector2 _velocity = Vector2.zero;
+
+        if (canJump) {
+            //Final movement vector
+            _velocity = (_movHorizontal + _movVerical).normalized * Acceleration;
+        }
+        else if (!canJump) {
+
+            //Final movement vector
+            _velocity = _movHorizontal.normalized * Acceleration;
+
+        }
 
         rb.AddRelativeForce(_velocity);
 
