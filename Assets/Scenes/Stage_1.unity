@@ -113,15 +113,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &750841072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1726348339952994, guid: 2dd1335d228dc6e419a7b3b9ffdbc0a5,
+    type: 2}
+  m_PrefabInternal: {fileID: 1720435689}
+--- !u!114 &750841076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 750841072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90e250a4d8e96764f8ace5d9ca8388f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxInventorySize: 1
+  MaxPickupDistance: 0
+  MessageText: {fileID: 0}
 --- !u!1 &875818650 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 1211552794805540, guid: 5eaca279a3a701943a764bfd41e14881,
+  m_CorrespondingSourceObject: {fileID: 1211552794805540, guid: 5eaca279a3a701943a764bfd41e14881,
     type: 2}
   m_PrefabInternal: {fileID: 1482851418}
 --- !u!61 &875818651
 BoxCollider2D:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 875818650}
   m_Enabled: 1
@@ -183,8 +202,8 @@ Prefab:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 5eaca279a3a701943a764bfd41e14881, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 5eaca279a3a701943a764bfd41e14881, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1720435689
 Prefab:
   m_ObjectHideFlags: 0
@@ -224,6 +243,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114976804728307698, guid: 2dd1335d228dc6e419a7b3b9ffdbc0a5,
+        type: 2}
+      propertyPath: JumpForce
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 114976804728307698, guid: 2dd1335d228dc6e419a7b3b9ffdbc0a5,
+        type: 2}
+      propertyPath: Acceleration
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 20576989480086400, guid: 2dd1335d228dc6e419a7b3b9ffdbc0a5,
+        type: 2}
+      propertyPath: orthographic size
+      value: 3.9745326
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 2dd1335d228dc6e419a7b3b9ffdbc0a5, type: 2}
-  m_IsPrefabParent: 0
+  m_SourcePrefab: {fileID: 100100000, guid: 2dd1335d228dc6e419a7b3b9ffdbc0a5, type: 2}
+  m_IsPrefabAsset: 0

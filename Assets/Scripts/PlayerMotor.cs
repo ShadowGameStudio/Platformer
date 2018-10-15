@@ -24,44 +24,21 @@ public class PlayerMotor : MonoBehaviour {
     }
 
     void OnCollisionExit2D() {
+        canJump = false;
     }
 
     // Update is called once per frame
     void Update() {
 
-        //if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && canJump) {
-        //    Vector2 vel = rb.velocity;
-        //    vel.x /= DeAcceleration;
-
-        //    rb.velocity = vel;
-        //}
-
-        float _xMov = Input.GetAxisRaw("Horizontal");
-        float _zMov = Input.GetAxisRaw("Vertical");
-
-        Vector2 _movHorizontal = transform.right * _xMov;
-        Vector2 _movVerical = transform.up * _zMov;
-
-        //Check if the vertical movement isn't equal to zero
-        if (_movVerical != Vector2.zero) {
-
-            canJump = false;
+        if (Input.GetKey(KeyCode.A)) {
+            rb.AddForce(Vector2.left * Acceleration * Time.deltaTime);
         }
-
-        Vector2 _velocity = Vector2.zero;
-
-        if (canJump) {
-            //Final movement vector
-            _velocity = (_movHorizontal + _movVerical).normalized * Acceleration;
+        else if (Input.GetKey(KeyCode.D)) {
+            rb.AddForce(Vector2.right * Acceleration * Time.deltaTime);
         }
-        else if (!canJump) {
-
-            //Final movement vector
-            _velocity = _movHorizontal.normalized * Acceleration;
-
+        if (Input.GetKey(KeyCode.W) && canJump) {
+            rb.AddForce(Vector2.up * JumpForce * Time.deltaTime);
         }
-
-        rb.AddRelativeForce(_velocity);
 
     }
 }
