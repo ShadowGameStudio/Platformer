@@ -240,8 +240,8 @@ InputManager:
     gravity: 1000
     dead: 0.001
     sensitivity: 1000
-    snap: 0
-    invert: 0
+    snap: 1
+    invert: 1
     type: 0
     axis: 0
     joyNum: 0
