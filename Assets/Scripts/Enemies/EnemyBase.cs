@@ -8,12 +8,11 @@ public class EnemyBase : MonoBehaviour {
     [Header("Basic Enemy")]
     [SerializeField] private int EnemyHealth;
     [SerializeField] private LayerMask WhatIsGround;
-    [SerializeField] private Transform GroundCheck;
 
     [SerializeField] private float GroundedRadius = 1f;
 
     [Header("Patrolling")]
-    [SerializeField] private Transform[] PatrolPoints;
+    [SerializeField] private Transform PlayerTransform;
     [SerializeField] private int PlayerDetectionRange;
 
     [Header("Movement")]
@@ -25,19 +24,24 @@ public class EnemyBase : MonoBehaviour {
     [SerializeField] private float ExtraGravity = 0f;
     [SerializeField] private float WallDetectionRange = 1f;
 
-    Transform CurrentPatrolPoint;
+    public Transform CurrentPatrolPoint;
+    private GameObject GroundCheck;
+    public List<Transform> PatrolPoints;
+
     int CurrentPatrolPointIndex;
     private Rigidbody2D rb;
-
     private Vector3 Velocity = Vector3.zero;
+
     private Vector2 Dir = Vector2.zero;
     private bool FacingRight = false;
-
     private bool IsChasingPlayer = false;
+
     private bool Grounded = true;
 
 	// Use this for initialization
 	void Awake () {
+
+        GroundCheck = GameObject.FindGameObjectWithTag("WorldGenerator");
 
         //Get the enemy's rigidbody
         rb = GetComponent<Rigidbody2D>();
@@ -55,29 +59,34 @@ public class EnemyBase : MonoBehaviour {
         Dir = CurrentPatrolPoint.position - transform.position;
 
         //Check if the distance to the patrol point is less than 1f
-        if (Vector2.Distance(transform.position, CurrentPatrolPoint.position) < 1f) {
+        if (Vector2.Distance(transform.position, CurrentPatrolPoint.position) < 1f)
+        {
 
             //Check what direction the enemy is travelling and change it
             //to the opposite
-            if (Dir == Vector2.right) {
+            if (Dir == Vector2.right)
+            {
 
                 Dir = Vector2.left;
 
             }
-            else if(Dir == Vector2.left){
+            else if (Dir == Vector2.left)
+            {
 
                 Dir = Vector2.right;
 
             }
 
             //Check if we haven't reached the end of the array
-            if (CurrentPatrolPointIndex < PatrolPoints.Length - 1) {
+            if (CurrentPatrolPointIndex < PatrolPoints.Count - 1)
+            {
 
                 //Increase the index
                 CurrentPatrolPointIndex++;
 
             }
-            else {
+            else
+            {
 
                 //Set the index to zero
                 CurrentPatrolPointIndex = 0;
@@ -87,9 +96,9 @@ public class EnemyBase : MonoBehaviour {
             CurrentPatrolPoint = PatrolPoints[CurrentPatrolPointIndex];
 
         }
+
         //Make the enemy move
         Move(Dir.x);
-
     }
 
     //FixedUpdate is called every physics frame
@@ -174,7 +183,7 @@ public class EnemyBase : MonoBehaviour {
     void CheckIfGrounded() {
 
         //Get all the nearby colliders within the ground layer
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, WhatIsGround);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(GroundCheck.transform.position, GroundedRadius, WhatIsGround);
 
         //Go through all the colliders
         for (int i = 0; i < hitColliders.Length; i++) {

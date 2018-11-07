@@ -11,19 +11,27 @@ public class PlayerMotor : MonoBehaviour {
 
     [Range(0, 0.3f)] [SerializeField] private float MovementSmoothing = 0.05f;
     [SerializeField] private LayerMask WhatIsGround;
-    [SerializeField] private Transform GroundCheck;
 
     [SerializeField] private float FallMultiplier = 2.5f;
     [SerializeField] private float ExtraGravity = 0f;
 
     private Rigidbody2D rb;
     private Vector3 Velocity = Vector3.zero;
-    private bool Grounded = true;
+    private GameObject GroundCheck;
 
+    private bool Grounded = true;
     private bool FacingRight = false;
+
 
     // Use this for initialization
     void Awake() {
+
+        GroundCheck = GameObject.FindGameObjectWithTag("WorldGenerator");
+
+        if (GroundCheck == null)
+        {
+            Debug.Log("GROUND CHECK IS NULL");
+        }
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -34,7 +42,7 @@ public class PlayerMotor : MonoBehaviour {
 
         //Check if player is touching ground
         //Get all the colliders nearby
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, WhatIsGround);
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(GroundCheck.transform.position, GroundedRadius, WhatIsGround);
 
         //Go through all the colliders
         for (int i = 0; i < hitColliders.Length; i++) {

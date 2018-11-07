@@ -11,6 +11,8 @@ public class InventorySystem : MonoBehaviour {
     [SerializeField] private float MaxPickupDistance = 0f;
     [SerializeField] private Text MessageText;
 
+    [SerializeField] private Weapon[] Weapons;
+
     private GameObject ObjectToPickup;
     private GameObject PlayerHand;
 

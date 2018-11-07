@@ -5,9 +5,9 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour {
 
     [SerializeField] private int MovementSpeed = 1;
-    [SerializeField] private Transform[] MovingPoints;
+    [SerializeField] public List<Transform> MovingPoints;
 
-    Transform CurrentMovePoint;
+    public Transform CurrentMovePoint;
     int CurrentMovePointIndex;
     Rigidbody2D rb;
 
@@ -48,7 +48,7 @@ public class MovingPlatform : MonoBehaviour {
             }
 
             //Check if the platform isn't at the last point
-            if (CurrentMovePointIndex < MovingPoints.Length - 1) {
+            if (CurrentMovePointIndex < MovingPoints.Count - 1) {
 
                 //Increase the index
                 CurrentMovePointIndex++;
